@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "451952795764",
+    "project_id": "alcoolandiajl",
+    "storage_bucket": "alcoolandiajl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451952795764:android:8b5c05a26fce315e5d3121",
+        "android_client_info": {
+          "package_name": "com.example.alcoolandiajl"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgLZimi2cv_LdY2XtTc8FaB-SzhMC3Iwk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
