@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_network/image_network.dart';
 import 'package:ionicons/ionicons.dart';
 
 class HomePage extends StatefulWidget {
@@ -125,7 +126,26 @@ final List<Widget> sliders = slides
                   ),
                 ),
                 const Spacer(),
-                Image.asset('jack_daniels_single_barrel.png', fit: BoxFit.scaleDown, height: 250,),
+                const ImageNetwork(
+                  image:
+                      'https://jackdanielsbottles.com/wp-content/uploads/2014/06/Single_Barrel_New-800x1408.png',
+                  height: 250,
+                  width: 150,
+                  duration: 1500,
+                  curve: Curves.easeIn,
+                  onPointer: true,
+                  debugPrint: false,
+                  fullScreen: false,
+                  fitAndroidIos: BoxFit.scaleDown,
+                  fitWeb: BoxFitWeb.scaleDown,
+                  onLoading: CircularProgressIndicator(
+                    color: Colors.brown,
+                  ),
+                  onError: Icon(
+                    Icons.error,
+                    color: Colors.red,
+                  ),
+                ),
                 const Spacer(),
                 Container(
                   padding: const EdgeInsets.all(20),
