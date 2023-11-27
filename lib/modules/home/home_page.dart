@@ -20,7 +20,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController _textEditingController = TextEditingController();
-  FocusNode focus = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +31,9 @@ class _HomePageState extends State<HomePage> {
           color: Theme.of(context).colorScheme.secondary,
         ),
         title: Text(
-          'Alcoolandia',
-          style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+          'ALCOOLÂNDIA',
+          style:
+              GoogleFonts.rye(color: Theme.of(context).colorScheme.secondary, fontStyle: FontStyle.normal),
         ),
         actions: [
           TextButton(
@@ -54,136 +54,348 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Container(
-        color: Theme.of(context).colorScheme.primary,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 100),
-              FlutterCarousel(
-                options: CarouselOptions(
-                  height: 700,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 7),
-                  viewportFraction: 0.8,
-                  enlargeCenterPage: true,
-                  showIndicator: false,
-                  slideIndicator: CircularWaveSlideIndicator(),
-                  floatingIndicator: false,
-                ),
-                items: sliders,
-              ),
-              const SizedBox(height: 100),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                height: 300,
-                child: CupertinoTextField(
-                  cursorColor: Theme.of(context).colorScheme.secondary,
-                  prefix: Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Icon(
-                      Ionicons.search_outline,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                  ),
-                  suffix: GestureDetector(
-                    onTap: () {
-                      focus.unfocus();
-                      _textEditingController.clear();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: Icon(
-                        Icons.close,
-                        color: Theme.of(context).colorScheme.secondary,
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              backgroundColor: Colors.transparent,
+              leading: const SizedBox.shrink(),
+              expandedHeight: 1100.0,
+              floating: false,
+              pinned: false,
+              flexibleSpace: FlexibleSpaceBar(
+                collapseMode: CollapseMode.pin,
+                stretchModes: const <StretchMode>[
+                  StretchMode.zoomBackground,
+                  StretchMode.blurBackground,
+                  StretchMode.fadeTitle,
+                ],
+                centerTitle: false,
+                expandedTitleScale: 1.1,
+                background: Column(
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 50),
+                      color: Theme.of(context).colorScheme.primary,
+                      child: FlutterCarousel(
+                        options: CarouselOptions(
+                          height: 700,
+                          autoPlay: true,
+                          autoPlayInterval: const Duration(seconds: 7),
+                          viewportFraction: 0.8,
+                          enlargeCenterPage: true,
+                          showIndicator: false,
+                          slideIndicator: CircularWaveSlideIndicator(),
+                          floatingIndicator: false,
+                        ),
+                        items: sliders,
                       ),
                     ),
-                  ),
-                  keyboardAppearance: Brightness.light,
-                  focusNode: focus,
-                  controller: _textEditingController,
-                  placeholder: 'teste',
-                  placeholderStyle:
-                      TextStyle(color: Theme.of(context).colorScheme.secondary),
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.secondary),
-                  decoration: const BoxDecoration(),
-                  maxLines: 1,
-                  onChanged: (String value) {
-                    setState(() {});
-                  },
-                  maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                  maxLength: 50,
-                  padding: const EdgeInsets.all(16.0),
-                ),
-              ),
-              const SizedBox(height: 100),
-              SizedBox(
-                height: 1400,
-                child: StaggeredGridView.countBuilder(
-                  staggeredTileBuilder: (int index) =>
-                      const StaggeredTile.count(1, 1.8),
-                  crossAxisCount:
-                      calcScreenWidth(context) == Screen.web ? 6 : 2,
-                  padding: const EdgeInsets.only(left: 25, right: 25, top: 20),
-                  itemCount: 12,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 25,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index % 2 == 0) {
-                      if (index == 0) {
-                        return FadeInUp(
-                          duration: const Duration(seconds: 1),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: <Widget>[
-                              Transform.translate(
-                                offset: const Offset(0.0, 100.0),
-                                child: Card(
-                                  key: widget.key,
-                                ),
-                              ),
-                              Transform.translate(
-                                offset: const Offset(0.0, -100.0),
-                                child: Text(
-                                  'encontrados ${slides.length} resultados',
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 28),
-                                ),
-                              ),
-                            ],
+                    const SizedBox(height: 130),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          width: MediaQuery.of(context).size.width / 1.4,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary,
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                        );
-                      }
-                      return FadeInUp(
-                        duration: const Duration(seconds: 1),
-                        child: Transform.translate(
-                          offset: const Offset(0.0, 100.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Card(
-                              key: widget.key,
+                          child: CupertinoTextField(
+                            cursorColor:
+                                Theme.of(context).colorScheme.secondary,
+                            prefix: Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Icon(
+                                Ionicons.search_outline,
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
+                            ),
+                            suffix: GestureDetector(
+                              onTap: () {
+                                _textEditingController.clear();
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 15),
+                                child: Icon(
+                                  Icons.close,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                ),
+                              ),
+                            ),
+                            keyboardAppearance: Brightness.dark,
+                            controller: _textEditingController,
+                            placeholder: 'Pesquisar',
+                            placeholderStyle: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary),
+                            decoration: const BoxDecoration(),
+                            maxLines: 1,
+                            onChanged: (String value) {
+                              setState(() {});
+                            },
+                            maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                            maxLength: 50,
+                            padding: const EdgeInsets.all(16.0),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
+                              context: context,
+                              builder: (BuildContext context) => ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(40),
+                                  topRight: Radius.circular(40),
+                                ),
+                                child: Container(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  height:
+                                      MediaQuery.of(context).size.height / 1.8,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Column(
+                                    children: <Widget>[
+                                      const SizedBox(height: 15),
+                                      Container(
+                                        width: 70,
+                                        height: 5,
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 20),
+                                      Text(
+                                        'Filtrar',
+                                        style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondary,
+                                            fontSize: 25),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primary,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Icon(
+                              Icons.display_settings_rounded,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
                         ),
-                      );
-                    } else {
-                      return FadeInDown(
-                        duration: const Duration(seconds: 1),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ];
+        },
+        body: StaggeredGridView.countBuilder(
+          staggeredTileBuilder: (int index) =>
+              const StaggeredTile.count(1, 1.8),
+          crossAxisCount: calcScreenWidth(context) == Screen.web ? 6 : 2,
+          padding: const EdgeInsets.only(left: 25, right: 25, top: 20),
+          itemCount: 12,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 25,
+          itemBuilder: (BuildContext context, int index) {
+            if (index % 2 == 0) {
+              if (index == 0) {
+                return FadeInUp(
+                  duration: const Duration(seconds: 1),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      Transform.translate(
+                        offset: const Offset(0.0, 100.0),
                         child: Card(
                           key: widget.key,
                         ),
-                      );
-                    }
-                  },
+                      ),
+                      Transform.translate(
+                        offset: const Offset(0.0, -100.0),
+                        child: Text(
+                          'encontrados ${slides.length} resultados',
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 28),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
+              return FadeInUp(
+                duration: const Duration(seconds: 1),
+                child: Transform.translate(
+                  offset: const Offset(0.0, 100.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Card(
+                      key: widget.key,
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          ),
+              );
+            } else {
+              return FadeInDown(
+                duration: const Duration(seconds: 1),
+                child: Card(
+                  key: widget.key,
+                ),
+              );
+            }
+          },
         ),
       ),
+      // body: Container(
+      //   color: Theme.of(context).colorScheme.primary,
+      //   child: SingleChildScrollView(
+      //     child: Column(
+      //       children: [
+      //         const SizedBox(height: 100),
+      //         FlutterCarousel(
+      //           options: CarouselOptions(
+      //             height: 700,
+      //             autoPlay: true,
+      //             autoPlayInterval: const Duration(seconds: 7),
+      //             viewportFraction: 0.8,
+      //             enlargeCenterPage: true,
+      //             showIndicator: false,
+      //             slideIndicator: CircularWaveSlideIndicator(),
+      //             floatingIndicator: false,
+      //           ),
+      //           items: sliders,
+      //         ),
+      //         const SizedBox(height: 100),
+      //         Container(
+      //           padding: const EdgeInsets.symmetric(horizontal: 30),
+      //           height: 300,
+      //           child: CupertinoTextField(
+      //             cursorColor: Theme.of(context).colorScheme.secondary,
+      //             prefix: Padding(
+      //               padding: const EdgeInsets.only(left: 15),
+      //               child: Icon(
+      //                 Ionicons.search_outline,
+      //                 color: Theme.of(context).colorScheme.secondary,
+      //               ),
+      //             ),
+      //             suffix: GestureDetector(
+      //               onTap: () {
+      //                 focus.unfocus();
+      //                 _textEditingController.clear();
+      //               },
+      //               child: Padding(
+      //                 padding: const EdgeInsets.only(right: 15),
+      //                 child: Icon(
+      //                   Icons.close,
+      //                   color: Theme.of(context).colorScheme.secondary,
+      //                 ),
+      //               ),
+      //             ),
+      //             keyboardAppearance: Brightness.light,
+      //             focusNode: focus,
+      //             controller: _textEditingController,
+      //             placeholder: 'teste',
+      //             placeholderStyle:
+      //                 TextStyle(color: Theme.of(context).colorScheme.secondary),
+      //             style:
+      //                 TextStyle(color: Theme.of(context).colorScheme.secondary),
+      //             decoration: const BoxDecoration(),
+      //             maxLines: 1,
+      //             onChanged: (String value) {
+      //               setState(() {});
+      //             },
+      //             maxLengthEnforcement: MaxLengthEnforcement.enforced,
+      //             maxLength: 50,
+      //             padding: const EdgeInsets.all(16.0),
+      //           ),
+      //         ),
+      //         const SizedBox(height: 100),
+      //         SizedBox(
+      //           height: 1400,
+      //           child: StaggeredGridView.countBuilder(
+      //             staggeredTileBuilder: (int index) =>
+      //                 const StaggeredTile.count(1, 1.8),
+      //             crossAxisCount:
+      //                 calcScreenWidth(context) == Screen.web ? 6 : 2,
+      //             padding: const EdgeInsets.only(left: 25, right: 25, top: 20),
+      //             itemCount: 12,
+      //             mainAxisSpacing: 10,
+      //             crossAxisSpacing: 25,
+      //             itemBuilder: (BuildContext context, int index) {
+      //               if (index % 2 == 0) {
+      //                 if (index == 0) {
+      //                   return FadeInUp(
+      //                     duration: const Duration(seconds: 1),
+      //                     child: Stack(
+      //                       alignment: Alignment.center,
+      //                       children: <Widget>[
+      //                         Transform.translate(
+      //                           offset: const Offset(0.0, 100.0),
+      //                           child: Card(
+      //                             key: widget.key,
+      //                           ),
+      //                         ),
+      //                         Transform.translate(
+      //                           offset: const Offset(0.0, -100.0),
+      //                           child: Text(
+      //                             'encontrados ${slides.length} resultados',
+      //                             style: const TextStyle(
+      //                                 color: Colors.white,
+      //                                 fontWeight: FontWeight.bold,
+      //                                 fontSize: 28),
+      //                           ),
+      //                         ),
+      //                       ],
+      //                     ),
+      //                   );
+      //                 }
+      //                 return FadeInUp(
+      //                   duration: const Duration(seconds: 1),
+      //                   child: Transform.translate(
+      //                     offset: const Offset(0.0, 100.0),
+      //                     child: ClipRRect(
+      //                       borderRadius: BorderRadius.circular(20),
+      //                       child: Card(
+      //                         key: widget.key,
+      //                       ),
+      //                     ),
+      //                   ),
+      //                 );
+      //               } else {
+      //                 return FadeInDown(
+      //                   duration: const Duration(seconds: 1),
+      //                   child: Card(
+      //                     key: widget.key,
+      //                   ),
+      //                 );
+      //               }
+      //             },
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
