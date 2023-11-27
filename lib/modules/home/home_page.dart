@@ -32,8 +32,9 @@ class _HomePageState extends State<HomePage> {
         ),
         title: Text(
           'ALCOOLÂNDIA',
-          style:
-              GoogleFonts.rye(color: Theme.of(context).colorScheme.secondary, fontStyle: FontStyle.normal),
+          style: GoogleFonts.rye(
+              color: Theme.of(context).colorScheme.secondary,
+              fontStyle: FontStyle.normal),
         ),
         actions: [
           TextButton(
@@ -211,7 +212,8 @@ class _HomePageState extends State<HomePage> {
           staggeredTileBuilder: (int index) =>
               const StaggeredTile.count(1, 1.8),
           crossAxisCount: calcScreenWidth(context) == Screen.web ? 6 : 2,
-          padding: const EdgeInsets.only(left: 25, right: 25, top: 20),
+          padding:
+              const EdgeInsets.only(left: 25, right: 25, top: 20, bottom: 100),
           itemCount: 12,
           mainAxisSpacing: 10,
           crossAxisSpacing: 25,
@@ -233,8 +235,8 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(0.0, -100.0),
                         child: Text(
                           'encontrados ${slides.length} resultados',
-                          style: const TextStyle(
-                              color: Colors.white,
+                          style: GoogleFonts.cormorantInfant(
+                              color: const Color(0xffc5a483),
                               fontWeight: FontWeight.bold,
                               fontSize: 28),
                         ),
@@ -413,7 +415,7 @@ class Slide {
 }
 
 var slides = List.generate(
-  6,
+  11,
   (index) => Slide(
     title: 'OAK AGED',
     height: 100.0 + index * 50,
