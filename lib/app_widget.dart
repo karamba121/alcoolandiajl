@@ -25,7 +25,6 @@ class AppWidget extends StatelessWidget {
           ),
           titleLarge: GoogleFonts.abrilFatface(
             fontSize: 30,
-            fontStyle: FontStyle.italic,
           ),
           bodyMedium: GoogleFonts.raleway(),
           displaySmall: GoogleFonts.raleway(),
