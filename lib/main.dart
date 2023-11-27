@@ -6,6 +6,15 @@ import 'app_module.dart';
 import 'app_widget.dart';
 import 'firebase_options.dart';
 
+Screen calcScreenWidth(BuildContext context) {
+  if (MediaQuery.of(context).size.width > 650) {
+    return Screen.web;
+  }
+  return Screen.mobile;
+}
+
+enum Screen { mobile, tab, web }
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

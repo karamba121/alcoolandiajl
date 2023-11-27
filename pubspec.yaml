@@ -41,6 +41,7 @@ dependencies:
   ionicons:
   flutter_carousel_widget:
   image_network:
+  animate_do:
 
   firebase_auth: ^4.7.3
   firebase_core: ^2.15.1
